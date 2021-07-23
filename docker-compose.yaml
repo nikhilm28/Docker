@@ -1,0 +1,52 @@
+version: '3'
+ 
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: pucsdStudents
+      MYSQL_USER: pucsd
+      MYSQL_PASSWORD: pucsd
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  db1:
+     image: mysql:5.7
+     container_name: db1
+     environment:
+       MYSQL_ROOT_PASSWORD: 123
+       MYSQL_DATABASE: pucsdFaculty
+     ports:
+       - "6034:3307"
+     volumes:
+       - dbdata1:/var/lib/mysql
+  db2:
+     image: mysql:5.7
+     container_name: db2
+     environment:
+       MYSQL_ROOT_PASSWORD: 123
+       MYSQL_DATABASE: pucsdCourses
+     ports:
+       - "6035:3308"
+     volumes:
+       - dbdata2:/var/bin/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+      - db1
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:
+  dbdata1:
+  dbdata2:

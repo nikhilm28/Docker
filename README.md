@@ -1,8 +1,8 @@
-##Docker-Compose:
+## Docker-Compose:
 This file is a ".yaml" file. It is basically used to create an appliction,
      Web, database containers, etc.
 
-##How to run the Docker-Compose file:
+## How to run the Docker-Compose file:
 
 Your local machine should have docker and docker-compose installed in it.
 
